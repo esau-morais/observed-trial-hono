@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@df21a9847cba574dcdeac397fb9057f3c6ba4a03
+      - uses: esau-morais/observed@1401e16a8943543c473083da8489a8907cafd680
         env:
           BOARD_PASSWORD: ${{ secrets.BOARD_PASSWORD }}
         with:

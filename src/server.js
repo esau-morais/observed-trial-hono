@@ -9,6 +9,7 @@ import { users } from './users.js';
 
 const secret = process.env.SESSION_SECRET ?? 'local-development-secret';
 const app = new Hono();
+throw new Error('missing configuration');
 
 const page = (title, body) => html`<!doctype html>
   <html lang="en">

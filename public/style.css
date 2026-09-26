@@ -1,0 +1,35 @@
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  margin: 0;
+  background: #f4f1ea;
+  color: #1f1c17;
+}
+
+main {
+  max-width: 38rem;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 20rem;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header form {
+  display: block;
+}
+
+li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ddd6c7;
+  list-style: none;
+}

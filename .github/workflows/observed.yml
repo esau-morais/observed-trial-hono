@@ -1,0 +1,23 @@
+name: Observed
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: esau-morais/observed@d133e5607ce5e1ef17aceedba4ab060a5eb9c1a5
+        env:
+          BOARD_PASSWORD: ${{ secrets.BOARD_PASSWORD }}
+        with:
+          project: .
+          base: ${{ github.event.pull_request.base.sha }}

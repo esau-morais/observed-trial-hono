@@ -10,22 +10,58 @@
       "src/tasks.js",
       "src/users.js",
       "public/board.js",
-      "public/style.css"
+      "public/style.css",
+      "start.js"
     ]
   },
-  "setup": [["npm", "install"]],
-  "start": ["node", "src/server.js"],
-  "ready": { "path": "/sign-in", "status": 200 },
+  "setup": [
+    [
+      "npm",
+      "install"
+    ]
+  ],
+  "start": [
+    "node",
+    "start.js"
+  ],
+  "ready": {
+    "path": "/sign-in",
+    "status": 200
+  },
   "capture": {
     "name": "Sign in and see today's tasks",
     "path": "/sign-in",
-    "ready": [{ "kind": "wait-selector", "selector": "input[name=\"email\"]" }],
+    "ready": [
+      {
+        "kind": "wait-selector",
+        "selector": "input[name=\"email\"]"
+      }
+    ],
     "steps": [
-      { "kind": "fill", "selector": "input[name=\"email\"]", "value": "grace@example.com" },
-      { "kind": "fill", "selector": "input[name=\"password\"]", "value": { "env": "BOARD_PASSWORD" } },
-      { "kind": "click-role", "role": "button", "name": "Sign in" },
-      { "kind": "wait-text", "text": "2 open of 3" },
-      { "kind": "network-idle" }
+      {
+        "kind": "fill",
+        "selector": "input[name=\"email\"]",
+        "value": "grace@example.com"
+      },
+      {
+        "kind": "fill",
+        "selector": "input[name=\"password\"]",
+        "value": {
+          "env": "BOARD_PASSWORD"
+        }
+      },
+      {
+        "kind": "click-role",
+        "role": "button",
+        "name": "Sign in"
+      },
+      {
+        "kind": "wait-text",
+        "text": "2 open of 3"
+      },
+      {
+        "kind": "network-idle"
+      }
     ],
     "check": {
       "kind": "request-count",
@@ -37,6 +73,8 @@
       "expectedCount": 1,
       "status": 200
     },
-    "browserArguments": ["--no-sandbox"]
+    "browserArguments": [
+      "--no-sandbox"
+    ]
   }
 }

@@ -76,7 +76,7 @@ app.get('/board', async (c) => {
     page(
       'Board',
       html`<header>
-          <h1>Today's standup</h1>
+          <h1>Today's standup board</h1>
           <p>Hi, ${user.name}</p>
           <form method="post" action="/sign-out"><button type="submit">Sign out</button></form>
         </header>

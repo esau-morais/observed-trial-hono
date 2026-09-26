@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@1401e16a8943543c473083da8489a8907cafd680
+      - uses: esau-morais/observed@0b41c3b403092698517ab8646d41e1baabf4c66d
         env:
           BOARD_PASSWORD: ${{ secrets.BOARD_PASSWORD }}
         with:
@@ -23,3 +23,5 @@ jobs:
           base: ${{ github.event.pull_request.base.sha }}
           github-app-client-id: ${{ vars.OBSERVED_APP_CLIENT_ID }}
           github-app-private-key: ${{ secrets.OBSERVED_APP_PRIVATE_KEY }}
+          slack-bot-token: ${{ secrets.OBSERVED_SLACK_BOT_TOKEN }}
+          slack-channel: ${{ vars.OBSERVED_SLACK_CHANNEL }}

@@ -16,8 +16,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: esau-morais/observed@0b41c3b403092698517ab8646d41e1baabf4c66d
-        env:
-          BOARD_PASSWORD: ${{ secrets.BOARD_PASSWORD }}
         with:
           project: .
           base: ${{ github.event.pull_request.base.sha }}

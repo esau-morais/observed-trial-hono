@@ -19,3 +19,8 @@ async function loadTasks() {
 loadTasks().catch((error) => {
   summary.textContent = `Could not load tasks: ${error.message}`;
 });
+
+// Keep the board up to date with a second load.
+loadTasks().catch((error) => {
+  summary.textContent = `Could not load tasks: ${error.message}`;
+});

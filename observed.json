@@ -13,30 +13,123 @@
       "public/style.css"
     ]
   },
-  "setup": [["npm", "install"]],
-  "start": ["node", "src/server.js"],
-  "ready": { "path": "/sign-in", "status": 200 },
-  "capture": {
-    "name": "Sign in and see today's tasks",
+  "setup": [
+    [
+      "npm",
+      "install"
+    ]
+  ],
+  "start": [
+    "node",
+    "src/server.js"
+  ],
+  "ready": {
     "path": "/sign-in",
-    "ready": [{ "kind": "wait-selector", "selector": "input[name=\"email\"]" }],
-    "steps": [
-      { "kind": "fill", "selector": "input[name=\"email\"]", "value": "grace@example.com" },
-      { "kind": "fill", "selector": "input[name=\"password\"]", "value": { "env": "BOARD_PASSWORD" } },
-      { "kind": "click-role", "role": "button", "name": "Sign in" },
-      { "kind": "wait-text", "text": "2 open of 3" },
-      { "kind": "network-idle" }
-    ],
-    "check": {
-      "kind": "request-count",
-      "id": "tasks-api-once",
-      "name": "Board requests tasks API once",
-      "scope": "Sign in through board load and network idle.",
-      "method": "GET",
-      "path": "/api/tasks",
-      "expectedCount": 1,
-      "status": 200
+    "status": 200
+  },
+  "journeys": [
+    {
+      "name": "Sign in and see today's tasks",
+      "path": "/sign-in",
+      "ready": [
+        {
+          "kind": "wait-selector",
+          "selector": "input[name=\"email\"]"
+        }
+      ],
+      "steps": [
+        {
+          "kind": "fill",
+          "selector": "input[name=\"email\"]",
+          "value": "observed-s1@example.com"
+        },
+        {
+          "kind": "fill",
+          "selector": "input[name=\"password\"]",
+          "value": {
+            "env": "BOARD_PASSWORD"
+          }
+        },
+        {
+          "kind": "click-role",
+          "role": "button",
+          "name": "Sign in"
+        },
+        {
+          "kind": "wait-text",
+          "text": "2 open of 3"
+        },
+        {
+          "kind": "network-idle"
+        }
+      ],
+      "checks": [
+        {
+          "kind": "request-count",
+          "id": "tasks-api-once",
+          "name": "Board requests tasks API once",
+          "scope": "Sign in through board load and network idle.",
+          "method": "GET",
+          "path": "/api/tasks",
+          "expectedCount": 1,
+          "status": 200
+        },
+        {
+          "kind": "text",
+          "id": "open-summary",
+          "name": "Open task summary",
+          "scope": "Board summary after the tasks load.",
+          "selector": "#summary",
+          "expectedText": "2 open of 3"
+        },
+        {
+          "kind": "text",
+          "id": "greeting",
+          "name": "Greets the signed-in user",
+          "scope": "Board header after signing in.",
+          "selector": "header p",
+          "expectedText": "Hi, Observed S1"
+        }
+      ],
+      "browserArguments": [
+        "--no-sandbox"
+      ]
     },
-    "browserArguments": ["--no-sandbox"]
-  }
+    {
+      "name": "Sign-in page",
+      "path": "/sign-in",
+      "ready": [
+        {
+          "kind": "wait-selector",
+          "selector": "input[name=\"email\"]"
+        }
+      ],
+      "steps": [
+        {
+          "kind": "navigate",
+          "path": "/sign-in"
+        },
+        {
+          "kind": "wait-selector",
+          "selector": "input[name=\"email\"]"
+        },
+        {
+          "kind": "network-idle"
+        }
+      ],
+      "checks": [
+        {
+          "kind": "text",
+          "id": "sign-in-heading",
+          "name": "Sign-in heading",
+          "scope": "Sign-in page after load.",
+          "selector": "h1",
+          "expectedText": "Standup board"
+        }
+      ],
+      "browserArguments": [
+        "--no-sandbox"
+      ]
+    }
+  ]
 }

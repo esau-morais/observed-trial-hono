@@ -16,6 +16,7 @@ async function loadTasks() {
   summary.textContent = `${open} open of ${tasks.length}`;
 }
 
+loadTasks();
 loadTasks().catch((error) => {
   summary.textContent = `Could not load tasks: ${error.message}`;
 });
